@@ -222,3 +222,9 @@ harness = false
 [[test]]
 name = "integration"
 path = "tests/integration.rs"
+
+# Werkbank-Build (ArcAngel): opencadkernel mit schnellerem Ear-Clipping, bis
+# HakanSeven12/opencadkernel#88 in einer OCS-Release ist.
+[patch."https://github.com/HakanSeven12/opencadkernel.git"]
+opencadkernel = { git = "https://github.com/megabrain-agent/opencadkernel.git", branch = "perf/clip-ears" }
+opencadkernel-constraints = { git = "https://github.com/megabrain-agent/opencadkernel.git", branch = "perf/clip-ears" }
