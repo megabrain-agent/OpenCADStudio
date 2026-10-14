@@ -222,3 +222,7 @@ harness = false
 [[test]]
 name = "integration"
 path = "tests/integration.rs"
+
+# ArcAngel-Werkbank: XCLIP-Fix (opencadcodec fix/spatial-filter-matrix-order) bis zur Release.
+[patch."https://github.com/HakanSeven12/opencadcodec.git"]
+opencadcodec = { path = "../opencadcodec" }
