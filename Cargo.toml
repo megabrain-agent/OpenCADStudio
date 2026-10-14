@@ -228,3 +228,8 @@ path = "tests/integration.rs"
 [patch."https://github.com/HakanSeven12/opencadkernel.git"]
 opencadkernel = { git = "https://github.com/megabrain-agent/opencadkernel.git", branch = "perf/clip-ears" }
 opencadkernel-constraints = { git = "https://github.com/megabrain-agent/opencadkernel.git", branch = "perf/clip-ears" }
+
+# Werkbank-Build (ArcAngel): DXF-Wertzeilen ohne 256-Byte-Puffer je Zeile,
+# bis HakanSeven12/opencadcodec#114 in einer OCS-Release ist.
+[patch."https://github.com/HakanSeven12/opencadcodec.git"]
+opencadcodec = { git = "https://github.com/megabrain-agent/opencadcodec.git", branch = "perf/read-line-alloc" }

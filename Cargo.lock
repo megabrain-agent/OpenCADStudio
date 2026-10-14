@@ -4361,7 +4361,7 @@ dependencies = [
 [[package]]
 name = "opencadcodec"
 version = "0.6.0"
-source = "git+https://github.com/HakanSeven12/opencadcodec.git?rev=e83247d#e83247df8d0b9c24f6eedb75fb9a4c279f217ec8"
+source = "git+https://github.com/megabrain-agent/opencadcodec.git?branch=perf%2Fread-line-alloc#4deee540a7306d15600225dc25b9d7103ba971d6"
 dependencies = [
  "anyhow",
  "bitflags 2.13.1",
@@ -4393,7 +4393,7 @@ dependencies = [
 [[package]]
 name = "opencadkernel"
 version = "0.1.0"
-source = "git+https://github.com/HakanSeven12/opencadkernel.git?rev=2c6224b#2c6224ba25ac6b38c192242ce6aa8ce7bc8c6988"
+source = "git+https://github.com/megabrain-agent/opencadkernel.git?branch=perf%2Fclip-ears#402c705f12f648f1f9f5524e274d556d34d5e270"
 dependencies = [
  "cavalier_contours",
  "opencadcodec",
@@ -4404,7 +4404,7 @@ dependencies = [
 [[package]]
 name = "opencadkernel-constraints"
 version = "0.1.0"
-source = "git+https://github.com/HakanSeven12/opencadkernel.git?rev=2c6224b#2c6224ba25ac6b38c192242ce6aa8ce7bc8c6988"
+source = "git+https://github.com/megabrain-agent/opencadkernel.git?branch=perf%2Fclip-ears#402c705f12f648f1f9f5524e274d556d34d5e270"
 dependencies = [
  "nalgebra",
 ]
