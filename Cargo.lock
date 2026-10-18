@@ -96,7 +96,7 @@ checksum = "366ffbaa4442f4684d91e2cd7c5ea7c4ed8add41959a31447066e279e432b618"
 [[package]]
 name = "acadrust"
 version = "0.6.4"
-source = "git+https://github.com/HakanSeven12/opencadcodec.git?rev=5d4f11a#5d4f11ae38758caec540bc9819ff2c4120eeadb4"
+source = "git+https://github.com/megabrain-agent/opencadcodec.git?branch=fix%2Fdwg-new-object-classes#6d15b065fe5784d654ee9c61c287be27ebae6af7"
 dependencies = [
  "anyhow",
  "bitflags 2.13.1",

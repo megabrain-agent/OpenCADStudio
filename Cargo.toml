@@ -226,3 +226,8 @@ harness = false
 [[test]]
 name = "integration"
 path = "tests/integration.rs"
+
+# Werkbank-Build (ArcAngel): Klassen für nach dem Lesen entstandene Objekte (Einfügung eines
+# dynamischen Blocks behält ihr Blattformat), bis der Fix in einer OCS-Release ist.
+[patch."https://github.com/HakanSeven12/opencadcodec.git"]
+acadrust = { git = "https://github.com/megabrain-agent/opencadcodec.git", branch = "fix/dwg-new-object-classes" }
