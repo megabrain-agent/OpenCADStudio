@@ -1,0 +1,59 @@
+name: MSY native build
+
+# Unsigned desktop binaries of this branch for side-by-side measurements
+# against the published release (Linux x86_64 and Windows x64). No release,
+# no packaging: the binary is uploaded as a workflow artifact.
+
+on:
+  push:
+    branches: ["msy-drawing/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  RUST_MIN_STACK: "67108864"
+
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y \
+            libgl1-mesa-dev libx11-dev libxcursor-dev libxi-dev libxrandr-dev \
+            libxkbcommon-dev libwayland-dev libfontconfig1-dev libfreetype6-dev
+      - name: Build
+        run: cargo build --locked --release --bin OpenCADStudio
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: OpenCADStudio-linux-x86_64
+          path: target/release/OpenCADStudio
+          if-no-files-found: error
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+          targets: x86_64-pc-windows-msvc
+      - name: Build
+        shell: bash
+        run: cargo build --locked --release --target x86_64-pc-windows-msvc --bin OpenCADStudio
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: OpenCADStudio-windows-x64
+          path: target/x86_64-pc-windows-msvc/release/OpenCADStudio.exe
+          if-no-files-found: error
