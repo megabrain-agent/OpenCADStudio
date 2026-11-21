@@ -279,6 +279,24 @@ pub(crate) fn pick_box_aperture_px(value: i32) -> f32 {
     aperture.max(1.0)
 }
 
+/// The web build hands the crosshair to the browser as a hardware cursor:
+/// a canvas-drawn crosshair trails the pointer by at least one frame, the
+/// OS cursor never does. The host page maps `crosshair` (dark drawing
+/// background) and `cell` (light background) to its own cursor images; a
+/// page without them still shows the plain system crosshair.
+pub(crate) const SYSTEM_CROSSHAIR: bool = cfg!(target_arch = "wasm32");
+
+/// Cursor over the viewport while the crosshair setting is active.
+fn system_crosshair_interaction(bg: [f32; 4]) -> mouse::Interaction {
+    if !SYSTEM_CROSSHAIR {
+        mouse::Interaction::Hidden
+    } else if crate::ui::style::common::canvas_is_light(bg) {
+        mouse::Interaction::Cell
+    } else {
+        mouse::Interaction::Crosshair
+    }
+}
+
 /// What a crosshair paints around the pointer, in canvas pixels.
 pub(super) struct CrosshairMarks {
     /// One entry per axis: the outward and the inward segment.
@@ -2278,7 +2296,7 @@ impl canvas::Program<Message> for SelectionCanvas {
         // through to a sibling — `Hidden` is the explicit "no cursor"
         // signal that actually suppresses the OS arrow.
         if cursor.is_over(bounds) && self.crosshair.cursor_type == CursorType::Crosshair {
-            mouse::Interaction::Hidden
+            system_crosshair_interaction(self.crosshair_bg)
         } else {
             mouse::Interaction::default()
         }
@@ -3224,7 +3242,7 @@ impl canvas::Program<Message> for SelectionCanvas {
                     // The arms stay only for the normal (non-pending) cursor: a
                     // waiting pick shows the box alone, regardless of the UCS
                     // rotation, so the square is unmistakable.
-                    let marks = crosshair_marks(
+                    let mut marks = crosshair_marks(
                         cp,
                         sq,
                         arm,
@@ -3232,8 +3250,14 @@ impl canvas::Program<Message> for SelectionCanvas {
                         self.crosshair.snap_angle_deg,
                         point_mode,
                         pick_pending,
-                        self.crosshair.hide_arms,
+                        self.crosshair.hide_arms || SYSTEM_CROSSHAIR,
                     );
+                    // The hardware cursor carries arms and pickbox; only the
+                    // blue "pick now" box stays on the canvas.
+                    if SYSTEM_CROSSHAIR && !pick_pending {
+                        marks.pickbox = None;
+                        marks.dot = None;
+                    }
                     for [outward, inward] in &marks.arms {
                         let arms = canvas::Path::new(|path| {
                             path.move_to(outward.0);
