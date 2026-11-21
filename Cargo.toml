@@ -125,8 +125,29 @@ block2 = "0.5"
 objc2-foundation = { version = "0.2", features = ["NSArray", "NSURL", "NSString", "NSObject", "NSNotification", "NSThread", "NSEnumerator"] }
 
 [patch.crates-io]
-iced_core = { git = "https://github.com/iced-rs/iced.git", rev = "23604ff22ab0aad9e00b9327cb7b8546ed84db39" }
-iced_widget = { git = "https://github.com/iced-rs/iced.git", rev = "23604ff22ab0aad9e00b9327cb7b8546ed84db39" }
+iced_core = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_widget = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+
+# iced 23604ff plus upstream b54f2c59 ("Fix event loop spin on stale redraw
+# deadlines in `winit` shell"). Without it a stale `WaitUntil` deadline makes
+# winit fire `ResumeTimeReached` back to back: on the web that is ~200
+# `scheduler.postTask` callbacks per frame, two thirds of the main thread.
+# Drop this block when the `rev` above moves past b54f2c59.
+[patch."https://github.com/iced-rs/iced.git"]
+iced = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_core = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_debug = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_futures = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_graphics = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_program = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_renderer = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_runtime = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_selector = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_test = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_tiny_skia = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_wgpu = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_widget = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_winit = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 getrandom = "0.3"
