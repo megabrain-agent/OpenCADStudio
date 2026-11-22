@@ -1220,7 +1220,12 @@ const SHAPE_FS: f32 = 1000.0;
 #[cfg(not(target_arch = "wasm32"))]
 fn font_system() -> &'static Mutex<cosmic_text::FontSystem> {
     static FS: OnceLock<Mutex<cosmic_text::FontSystem>> = OnceLock::new();
-    FS.get_or_init(|| Mutex::new(cosmic_text::FontSystem::new()))
+    FS.get_or_init(|| {
+        Mutex::new(cosmic_text::FontSystem::new_with_locale_and_db(
+            crate::sys::font_index::locale(),
+            crate::sys::font_index::cosmic_database(),
+        ))
+    })
 }
 
 /// Lay out and shape `text` in `family` with cosmic-text — ligatures, Arabic

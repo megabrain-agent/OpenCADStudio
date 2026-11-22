@@ -125,8 +125,8 @@ block2 = "0.5"
 objc2-foundation = { version = "0.2", features = ["NSArray", "NSURL", "NSString", "NSObject", "NSNotification", "NSThread", "NSEnumerator"] }
 
 [patch.crates-io]
-iced_core = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_widget = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced_core = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_widget = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
 
 # iced 23604ff plus upstream b54f2c59 ("Fix event loop spin on stale redraw
 # deadlines in `winit` shell"). Without it a stale `WaitUntil` deadline makes
@@ -134,23 +134,26 @@ iced_widget = { git = "https://github.com/megabrain-agent/iced.git", rev = "9303
 # `scheduler.postTask` callbacks per frame, two thirds of the main thread.
 # Drop this block when the `rev` above moves past b54f2c59.
 [patch."https://github.com/iced-rs/iced.git"]
-iced = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_core = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_debug = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_futures = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_graphics = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_program = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_renderer = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_runtime = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_selector = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_test = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_tiny_skia = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_wgpu = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_widget = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
-iced_winit = { git = "https://github.com/megabrain-agent/iced.git", rev = "930397528c853665d20732a16e5dad7f833a2317" }
+iced = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_core = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_debug = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_futures = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_graphics = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_program = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_renderer = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_runtime = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_selector = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_test = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_tiny_skia = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_wgpu = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_widget = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
+iced_winit = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 getrandom = "0.3"
+# The locale cosmic-text picks for itself, for font systems built from the
+# shared font index (already in the tree through cosmic-text).
+sys-locale = "0.3"
 ocs_plugin_api = { path = "crates/ocs_plugin_api", features = ["host"] }
 bincode = "1.3"
 meshopt = "0.6.2"

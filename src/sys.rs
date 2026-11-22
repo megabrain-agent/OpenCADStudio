@@ -2,6 +2,8 @@
 // (wasm) build must handle differently or skip.
 
 pub mod clipboard_link;
+#[cfg(not(target_arch = "wasm32"))]
+pub mod font_index;
 pub mod startup_times;
 pub mod ui_font;
 

@@ -161,7 +161,11 @@ fn embolden_alpha(source: &[u8], width: u32, height: u32) -> Vec<u8> {
 fn font_system(
     _labels: &[String; FACE_TILE_COUNT],
 ) -> Option<(FontSystem, Option<&'static str>, Weight)> {
-    Some((FontSystem::new(), None, Weight::SEMIBOLD))
+    let font_system = FontSystem::new_with_locale_and_db(
+        crate::sys::font_index::locale(),
+        crate::sys::font_index::cosmic_database(),
+    );
+    Some((font_system, None, Weight::SEMIBOLD))
 }
 
 #[cfg(target_arch = "wasm32")]

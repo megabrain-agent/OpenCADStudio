@@ -46,8 +46,7 @@ fn fonts() -> &'static SysFonts {
         // fetched Noto subsets instead (see `register_web_font`).
         #[cfg(not(target_arch = "wasm32"))]
         let db = {
-            let mut db = fontdb::Database::new();
-            db.load_system_fonts();
+            let mut db = crate::sys::font_index::system_database();
             // TrueType files dropped into the Fonts folder resolve like
             // installed ones, as the folder's SHX fonts already do (#925).
             for dir in crate::io::font_repo::fonts_dir()

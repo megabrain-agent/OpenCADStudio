@@ -7583,6 +7583,13 @@ pub fn run() -> iced::Result {
     // UI text follows the desktop's interface font: generic sans-serif, iced's
     // default font, is remapped to it before the first window opens.
     crate::sys::startup_times::mark("run: entry");
+    // Every font consumer shares one system font database built from the
+    // cached index, iced included; see `sys::font_index`.
+    let _ = iced::advanced::graphics::text::provide_system_fonts(
+        crate::sys::font_index::locale(),
+        crate::sys::font_index::system_database(),
+    );
+    crate::sys::startup_times::mark("run: system fonts indexed");
     crate::sys::ui_font::apply(crate::sys::ui_font::detect().as_ref());
     crate::sys::startup_times::mark("run: ui_font applied");
     iced::daemon(
