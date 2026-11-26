@@ -125,6 +125,9 @@ block2 = "0.5"
 objc2-foundation = { version = "0.2", features = ["NSArray", "NSURL", "NSString", "NSObject", "NSNotification", "NSThread", "NSEnumerator"] }
 
 [patch.crates-io]
+# Defer skrifa wght-axis probing from FontMatchKey::new until a face matches the family
+# (otherwise the first get_font_matches opens ~650 unrelated font files on Windows cold start).
+cosmic-text = { git = "https://github.com/megabrain-agent/cosmic-text.git", rev = "a6cea05d9dc10bbb64d0f21a3907f66e2a4e6114" }
 iced_core = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
 iced_widget = { git = "https://github.com/megabrain-agent/iced.git", rev = "7adbe407f12558f99fb11f66cd211ed9ff2a2e74" }
 
